@@ -19,5 +19,12 @@ while ($donnees = $req->fetch())
 echo '</ul>';
 
 $req->closeCursor();
+/*
+#Pour voir d'ou bien l'erreur on rajoute un argument.#
 
+<?php
+$reponse = $bdd->query('SELECT nom FROM jeux_video') or die(print_r($bdd->errorInfo()));
+
+*/
 ?>
+
