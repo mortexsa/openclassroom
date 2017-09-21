@@ -5,7 +5,7 @@ try
 }
 catch(Exception $e)
 {
-        die('Erreur : '.$e->getMessage());
+    die('Erreur : '.$e->getMessage());
 }
 
 // On ajoute une entrée dans la table jeux_video
