@@ -1,33 +1,50 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="blogstyle.css">
-		<title>Billets_du_blog</title>
-	</head>
-	<body>
-		<h1>Mon super blog !</h1>
-		<p>Derniers billets du blog:</p>
-	</body>
-</html>
-
+    <head>
+        <meta charset="utf-8" />
+        <title>Mon blog</title>
+	<link href="blogstyle.css" rel="stylesheet" /> 
+    </head>
+        
+    <body>
+        <h1>Mon super blog !</h1>
+        <p>Derniers billets du blog :</p>
+ 
 <?php
+// Connexion à la base de données
 try
 {
-	$bdd = new PDO('mysql:host=localhost;dbname=testocr;charset=utf8','root','');
+	$bdd = new PDO('mysql:host=localhost;dbname=testocr;charset=utf8', 'root', '');
 }
 catch(Exception $e)
 {
-	die('Erreur : '.$e->getMessage());
+        die('Erreur : '.$e->getMessage());
 }
 
-$reponse = $bdd->query('SELECT * FROM billets ORDER BY date_creation DESC LIMIT 0,5');
+// On récupère les 5 derniers billets
+$req = $bdd->query('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM billets ORDER BY date_creation DESC LIMIT 0, 5');
 
-	while($donnees = $reponse->fetch())
-	{
-		echo "<h3>".$donnees['titre']."le ".$donnees['date_creation']."</h3>";
-		echo "string";
-	}
-
-$reponse->closeCursor();
+while ($donnees = $req->fetch())
+{
 ?>
+<div class="news">
+    <h3>
+        <?php echo htmlspecialchars($donnees['titre']); ?>
+        <em>le <?php echo $donnees['date_creation_fr']; ?></em>
+    </h3>
+    
+    <p>
+    <?php
+    // On affiche le contenu du billet
+    echo nl2br(htmlspecialchars($donnees['contenu']));
+    ?>
+    <br />
+    <em><a href="commentaires.php?billet=<?php echo $donnees['id']; ?>">Commentaires</a></em>
+    </p>
+</div>
+<?php
+} // Fin de la boucle des billets
+$req->closeCursor();
+?>
+</body>
+</html>
