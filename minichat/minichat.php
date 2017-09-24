@@ -19,10 +19,10 @@
     
     <form action="minichat_post.php" method="post">
         <p>
-        <label for="pseudo">Pseudo</label> : <input type="text" name="pseudo" id="pseudo" placeholder="Ex : Chabane" maxlength="20" required /><br />
-        <label for="message">Message</label> :  <input type="text" name="message" id="message" maxlength="255" required/><br />
+        <label for="pseudo">Pseudo</label> : <input type="text" name="pseudo" id="pseudo" placeholder="Ex : Chabane" maxlength="20" /><br />
+        <label for="message">Message</label> :  <input type="text" name="message" id="message" maxlength="255" /><br />
 
-        <input type="submit" value="Envoyer" />
+        <input type="submit" value="Envoyer" name="submit_envoyer" />
 	</p>
     </form>
 
@@ -38,12 +38,12 @@ catch(Exception $e)
 }
 
 // Récupération des 10 derniers messages
-$reponse = $bdd->query('SELECT pseudo, message FROM minichat ORDER BY ID DESC LIMIT 0, 10');
+$reponse = $bdd->query('SELECT pseudo, message, date_ajout FROM minichat ORDER BY ID DESC LIMIT 0, 10');
 
 // Affichage de chaque message (toutes les données sont protégées par htmlspecialchars)
 while ($donnees = $reponse->fetch())
 {
-	echo '<p><strong>' . htmlspecialchars($donnees['pseudo']) . '</strong> : ' . htmlspecialchars($donnees['message']) . '</p>';
+	echo '<p>'.'['.htmlspecialchars($donnees['date_ajout']).'] '.'<strong>' . htmlspecialchars($donnees['pseudo']) . '</strong> : ' . htmlspecialchars($donnees['message']) . '</p>';
 }
 
 $reponse->closeCursor();
