@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 // Connexion à la base de données
 if(!empty($_POST['pseudo']) && !empty($_POST['message']))
 {
@@ -10,14 +13,15 @@ if(!empty($_POST['pseudo']) && !empty($_POST['message']))
 	{
 	        die('Erreur : '.$e->getMessage());
 	}
-	$_POST['pseudo'] = htmlspecialchars(trim(strip_tags($_POST['pseudo'])));
-	$_POST['message'] = htmlspecialchars(trim(strip_tags($_POST['message'])));
-
+	$_POST['pseudo'] = htmlspecialchars(strip_tags($_POST['pseudo']));
+	$_POST['message'] = htmlspecialchars(strip_tags($_POST['message']));
 	// Insertion du message à l'aide d'une requête préparée
 	$req = $bdd->prepare('INSERT INTO minichat (pseudo, message, date_ajout) VALUES(?, ?, NOW())');
 	$req->execute(array($_POST['pseudo'], $_POST['message']));
+	$_SESSION['pseudo'] = $_POST['pseudo'];
 	
 }
+
 header('Location: minichat.php');
 
 ?>

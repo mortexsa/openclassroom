@@ -1,7 +1,8 @@
+
 <?php 
-/* 
-    celle ci est la version de warda
-*/
+// On démarre la session 
+session_start();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,8 +20,8 @@
     
     <form action="minichat_post.php" method="post">
         <p>
-        <label for="pseudo">Pseudo</label> : <input type="text" name="pseudo" id="pseudo" placeholder="Ex : Chabane" maxlength="20" /><br />
-        <label for="message">Message</label> :  <input type="text" name="message" id="message" maxlength="255" /><br />
+        <label for="pseudo">Pseudo</label> : <input type="text" name="pseudo" id="pseudo" placeholder="Ex : Chabane" maxlength="20" <?php if(isset($_SESSION['pseudo'])){ echo "value=".$_SESSION['pseudo']; }?> ><br />
+        <label for="message">Message</label> :  <input type="text" name="message" id="message" maxlength="254" /><br />
 
         <input type="submit" value="Envoyer" name="submit_envoyer" />
 	</p>
@@ -38,16 +39,15 @@ catch(Exception $e)
 }
 
 // Récupération des 10 derniers messages
-$reponse = $bdd->query('SELECT pseudo, message, date_ajout FROM minichat ORDER BY ID DESC LIMIT 0, 10');
+$reponse = $bdd->query('SELECT pseudo, message, DATE_FORMAT(date_ajout,\'Le %d/%m/%Y à %Hh%imin%ss\') AS date_ajout_fr FROM minichat ORDER BY ID DESC LIMIT 0, 10');
 
 // Affichage de chaque message (toutes les données sont protégées par htmlspecialchars)
 while ($donnees = $reponse->fetch())
 {
-	echo '<p>'.'['.htmlspecialchars($donnees['date_ajout']).'] '.'<strong>' . htmlspecialchars($donnees['pseudo']) . '</strong> : ' . htmlspecialchars($donnees['message']) . '</p>';
+	echo '<p>'.'['.htmlspecialchars($donnees['date_ajout_fr']).'] '.'<strong>' . htmlspecialchars($donnees['pseudo']) . '</strong> : ' . htmlspecialchars($donnees['message']) . '</p>';
 }
 
 $reponse->closeCursor();
-
 ?>
     </body>
 </html>
