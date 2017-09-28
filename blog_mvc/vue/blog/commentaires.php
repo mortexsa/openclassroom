@@ -9,19 +9,12 @@
     <body>
         <h1>Mon super blog !</h1>
         <p><a href="blog.php">Retour à la liste des billets</a></p>
-        <?php
-        foreach($billets as $billet)
-        {
-        ?>
             <div class="news">
                 <h3><?php echo $billet['titre']; ?>
                 <em>le <?php echo $billet['date_creation_fr']; ?></em>
                 </h3>
                 <p><?php echo $billet['contenu']; ?></p>
             </div>
-        <?php
-        }   
-        ?>
         <h2>Commentaires</h2>
         <?php
         foreach($commentaires as $commentaire)
