@@ -9,7 +9,7 @@ $billets = get_billet($_GET['billet']);
 foreach($billets as $cle => $billet)
 {
     $billets[$cle]['titre'] = htmlspecialchars(strip_tags($billet['titre']));
-    $billets[$cle]['contenu'] = nl2br(htmlspecialchars(strip_tags($billet['contenu'])));
+    $billets[$cle]['contenu'] = nl2br(htmlspecialchars($billet['contenu']));
 }
 $commentaires = get_commentaires($_GET['billet']);
 foreach ($commentaires as $cle => $commentaire) {

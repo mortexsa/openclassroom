@@ -8,12 +8,12 @@
         
     <body>
         <h1>Mon super blog !</h1>
-        <p><a href="blog.php">Retour à la liste des billets</a></p>
+        <p><a href="blog.php?section=index">Retour à la liste des billets</a></p>
             <div class="news">
-                <h3><?php echo $billet['titre']; ?>
+                <h3><?php echo nl2br(htmlspecialchars($billet['titre'])); ?>
                 <em>le <?php echo $billet['date_creation_fr']; ?></em>
                 </h3>
-                <p><?php echo $billet['contenu']; ?></p>
+                <p><?php echo nl2br(htmlspecialchars($billet['contenu'])); ?></p>
             </div>
         <h2>Commentaires</h2>
         <?php

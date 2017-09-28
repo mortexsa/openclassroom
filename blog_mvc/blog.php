@@ -2,16 +2,27 @@
 
 include_once('modele/connexion_sql.php');
 
-if (!isset($_GET['section']) OR $_GET['section'] == 'index')
+if (preg_match("#^/openclassroom/blog_mvc/blog\.php$#", $_SERVER['REQUEST_URI']) OR 
+	preg_match("#^/openclassroom/blog_mvc/blog\.php\?section=index$#", $_SERVER['REQUEST_URI']))
 {
     include_once('controleur/blog/index.php');
 }
 
-else if($_GET['section'] == 'commentaires')
+//else if($_GET['section'] == 'commentaires' && isset($_GET['billet']))
+else if(preg_match("#^/openclassroom/blog_mvc/blog\.php\?section=commentaires&billet=[0-9]{1,}$#", $_SERVER['REQUEST_URI']))
 {
-    include_once('controleur/blog/commentaires.php');
+	$get_billet = (int) $_GET['billet'];
+	$length = $bdd->query('SELECT COUNT(*) AS length_table FROM billets');
+	$longueur = $length->fetch();
+	if($_GET['billet'] >0 && $_GET['billet'] <= $longueur['length_table']){
+    	include_once('controleur/blog/commentaires.php');
+	}
+	else
+	{
+		echo "Erreur-002: Billet inexistant."."<br />";
+	}
 }
 else
 {
-	echo "Page introuvable.";
+	echo "Erreur-001: Page non existante.";
 }
