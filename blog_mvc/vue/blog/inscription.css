@@ -1,0 +1,129 @@
+
+body
+{
+	background-image: url('images/1.jpg');
+	background-size: 1500px;
+	background-repeat: no-repeat;
+	background-position: top;
+	font-family: "Arial", sans-serif;
+}
+
+.merde
+{
+	width: 500px;
+	margin: auto;
+}
+
+.background
+{
+	margin-top: 130px;
+	background-color: rgba(121, 121, 121, 0.5);
+	border-radius: 10px;
+}
+
+.eloigner
+{
+	display: flex;
+	justify-content: space-around;
+}
+
+.eloigner label
+{
+	display: block;
+	font-weight: bold;
+	margin-bottom: 27px;
+}
+
+.eloigner label:nth-child(1)
+{
+	margin-top: 5px;
+}
+
+.eloigner input
+{
+	display: block;
+}
+
+#pseudo, #pass, #same_pass, #email
+{
+	border: 1px solid grey;
+	border-radius: 3px;
+	padding: 5px;
+	transition: all 0.5s ease;
+}
+#pseudo:focus, #pass:focus, #same_pass:focus, #email:focus
+{
+	background-color: lightgrey;
+	color: white;
+}
+
+#pseudo
+{
+	background-image: url('images/user.png');
+	background-repeat: no-repeat;
+	background-position: 3px 4.5px;
+	background-size: 15px;
+	padding-left: 21px;
+}
+#pass
+{
+	background-image: url('images/password.png');
+	background-repeat: no-repeat;
+	background-position: 3px 4.5px;
+	background-size: 15px;
+	padding-left: 21px;
+}
+#same_pass
+{
+	background-image: url('images/password.png');
+	background-repeat: no-repeat;
+	background-position: 3px 4.5px;
+	background-size: 15px;
+	padding-left: 21px;
+}
+#email
+{
+	background-image: url('images/email.png');
+	background-repeat: no-repeat;
+	background-position: 3px 4.5px;
+	background-size: 15px;
+	padding-left: 21px;	
+}
+
+#submit
+{
+	font-weight: bold;
+	background-color: white;
+	border: 1px solid blue;
+	padding: 5px;
+	color: blue;
+	border-radius: 3px;
+	box-shadow: 0px 0px 5px 0px blue;
+	transition: all 0.5s ease;	
+}
+
+#submit:hover
+{
+	background-color: blue;
+	color: white;
+	border-radius: 100px;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    blue;
+    font-style: italic;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    blue;
+   opacity:  1;
+   font-style: italic;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    blue;
+   opacity:  1;
+   font-style: italic;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    blue;
+   font-style: italic;
+}

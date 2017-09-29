@@ -19,10 +19,10 @@ else if(preg_match("#^/openclassroom/blog_mvc/blog\.php\?section=commentaires&bi
 	}
 	else
 	{
-		echo "Erreur-002: Billet inexistant."."<br />";
+		echo "ERROR 002: Billet inexistant."."<br />";
 	}
 }
 else
 {
-	echo "Erreur-001: Page non existante.";
+	echo "ERROR 001: Page non existante.";
 }
