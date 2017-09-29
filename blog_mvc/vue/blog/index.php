@@ -7,7 +7,13 @@
     </head>
         
     <body>
-        <h1>Mon super blog !</h1>
+        <header>
+            <div class="news">
+                <a href="vue/blog/inscription.php">S'inscrire</a>
+                <a href="blog.php?section=connexion">Se connecter</a> 
+            </div>
+            <h1>Mon super blog !</h1>
+        </header>
         <p>Derniers billets du blog :</p>
         <?php
         foreach($billets as $billet)

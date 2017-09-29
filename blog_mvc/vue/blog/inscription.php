@@ -8,7 +8,7 @@
     <body class="merde">
     	<fieldset class="background">
     		<legend><strong>Inscrivez-vous Maintenant !!</strong></legend>
-	    	<form class="eloigner" method="post" action="inscription.php">
+	    	<form class="eloigner" method="post" action="">
     		<div>	
     			<label for="pseudo">Pseudo</label>
     			<label for="pass">Mot de passe</label>
@@ -17,7 +17,7 @@
     		</div>
     		<div>	
     			<input type="text" name="pseudo" id="pseudo"
-    			 placeholder="Username"  required autofocus><br/>
+    			 placeholder="Username" maxlength="30" required autofocus><br/>
     			<input type="password" name="pass" id="pass" placeholder="Password"  required><br/>
     			<input type="password" name="same_pass" id="same_pass" placeholder="Password Again" required><br/>
     			<input type="email" name="email" id="email" placeholder="email@exemple.fr" required><br />

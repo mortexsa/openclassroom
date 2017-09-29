@@ -25,3 +25,14 @@ a
     text-decoration: none;
     color: blue;
 }
+
+.nav
+{
+    width:70%;
+    margin:auto;
+} 
+
+header div
+{
+    border: 3px solid black;
+}
